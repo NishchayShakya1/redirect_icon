@@ -6,27 +6,27 @@ class RedirectSocialIcon extends StatelessWidget {
     Key? key,
     required this.url,
     required this.icon,
-    required this.radius,
-    required this.size,
-    required this.iconColor,
-    required this.circleAvatarColor,
+    this.radius,
+    this.size,
+    this.iconColor,
+    this.circleAvatarColor,
   }) : super(key: key);
 
   final String url;
   final IconData icon;
-  final double radius;
-  final double size;
-  final Color iconColor;
-  final Color circleAvatarColor;
+  final double? radius;
+  final double? size;
+  final Color? iconColor;
+  final Color? circleAvatarColor;
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius,
+      radius: radius ?? 25,
       child: Material(
         shape: const CircleBorder(),
         clipBehavior: Clip.hardEdge,
-        color: circleAvatarColor,
+        color: circleAvatarColor ?? Colors.black,
         child: InkWell(
           onTap: () async {
             // ignore: deprecated_member_use
@@ -37,7 +37,9 @@ class RedirectSocialIcon extends StatelessWidget {
               throw "Could not launch $url";
             }
           },
-          child: Center(child: Icon(icon, size: size, color: iconColor,)),
+          child: Center(
+              child: Icon(icon,
+                  size: size ?? 25, color: iconColor ?? Colors.white)),
         ),
       ),
     );
